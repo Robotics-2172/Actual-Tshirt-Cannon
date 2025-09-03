@@ -4,7 +4,7 @@
 
 package frc.robot;
 
-/** Add your docs here. */
+/** These values will never change */
 public final class Constants {
     public static final int backLeftMotor = 1;
     public static final int frontLeftMotor = 2;
