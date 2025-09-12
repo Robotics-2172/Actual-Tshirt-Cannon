@@ -13,14 +13,15 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Cannon extends SubsystemBase {
-  private Relay nate1;
-  private Relay nate2;
-  private SparkMax natanoid;
+  private Relay compressor1;
+  private Relay compressor2;
+  private SparkMax solenoid;
   /** Creates a new Cannon. */
   public Cannon() {
-    nate1 = new Relay(Constants.Nate1);
-    nate2 = new Relay(Constants.Nate2);
-    natanoid = new SparkMax(Constants.Natanoid, MotorType.kBrushed);
+    compressor1 = new Relay(Constants.Compressor1);
+    compressor2 = new Relay(Constants.Compressor2);
+    solenoid = new SparkMax(Constants.Solenoid, MotorType.kBrushed);
+    
   }
 
   @Override
@@ -28,13 +29,16 @@ public class Cannon extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void gorb(Value value) {
-    nate1.set(value);
-    nate2.set(value);
+  public void compress(Value value) {
+    compressor1.set(value);
+    compressor2.set(value);
   }
-  public void gub(boolean tuppas){
-    if (tuppas) {
-      
+  public void shoot(boolean value){
+    if (value) {
+      solenoid.set(100);
+    }
+    else{
+      solenoid.set(0);
     }
   }
 }

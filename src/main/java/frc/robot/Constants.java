@@ -11,7 +11,7 @@ public final class Constants {
     public static final int backRightMotor = 3;
     public static final int frontRightMotor = 4;
 
-    public static final int Nate1 = 1;
-    public static final int Nate2 = 2;
-    public static final int Natanoid = 5;
+    public static final int Compressor1 = 1;
+    public static final int Compressor2 = 2;
+    public static final int Solenoid = 5;
 }

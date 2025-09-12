@@ -13,14 +13,10 @@ import frc.robot.Subsystems.TankDrive;
 public class RobotContainer {
   // Does this work? gorb
   XboxController controller = new XboxController(0);
-  TankDrive grug = new TankDrive();
+  TankDrive tank = new TankDrive();
   public RobotContainer() {
     configureBindings();
-    grug.setDefaultCommand(new DriveCommand(
-      grug,
-      controller::getLeftY,
-      controller::getRightY
-    ));
+    tank.setDefaultCommand(new DriveCommand(tank, controller::getLeftY, controller::getRightY));
   }
 
   private void configureBindings() {
