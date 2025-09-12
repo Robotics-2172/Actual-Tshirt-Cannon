@@ -29,9 +29,16 @@ public class Cannon extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void compress(Value value) {
-    compressor1.set(value);
-    compressor2.set(value);
+  public void compress(boolean value) {
+    if (value){
+      compressor1.set(Value.kOn);
+      compressor2.set(Value.kOn);
+    }
+    else {
+      compressor1.set(Value.kOff);
+      compressor2.set(Value.kOff);
+    }
+
   }
   public void shoot(boolean value){
     if (value) {
