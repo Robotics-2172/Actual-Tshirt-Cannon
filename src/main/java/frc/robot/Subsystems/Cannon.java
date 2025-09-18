@@ -13,14 +13,17 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Cannon extends SubsystemBase {
-  private Relay compressor1;
-  private Relay compressor2;
+  private SparkMax compressor1;
+  private SparkMax compressor2;
   private SparkMax solenoid;
+  public SparkMax pivot;
   /** Creates a new Cannon. */
   public Cannon() {
-    compressor1 = new Relay(Constants.Compressor1);
-    compressor2 = new Relay(Constants.Compressor2);
+    compressor1 = new SparkMax(Constants.Compressor1, MotorType.kBrushed);
+    compressor2 = new SparkMax(Constants.Compressor2, MotorType.kBrushed);
     solenoid = new SparkMax(Constants.Solenoid, MotorType.kBrushed);
+    pivot = new SparkMax(Constants.TiltMotor, MotorType.kBrushed);
+
     
   }
 
@@ -31,12 +34,12 @@ public class Cannon extends SubsystemBase {
 
   public void compress(boolean value) {
     if (value){
-      compressor1.set(Value.kOn);
-      compressor2.set(Value.kOn);
+      compressor1.set(100);
+      compressor2.set(100);
     }
     else {
-      compressor1.set(Value.kOff);
-      compressor2.set(Value.kOff);
+      compressor1.set(0);
+      compressor2.set(0);
     }
 
   }
@@ -47,5 +50,8 @@ public class Cannon extends SubsystemBase {
     else{
       solenoid.set(0);
     }
+  }
+  public void pivot(double speed){
+    pivot.set(speed);
   }
 }
