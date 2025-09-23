@@ -7,6 +7,7 @@ package frc.robot.Subsystems;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Relay.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -17,6 +18,7 @@ public class Cannon extends SubsystemBase {
   private SparkMax compressor2;
   private SparkMax solenoid;
   public SparkMax pivot;
+  public AnalogInput sensor = new AnalogInput(3);
   /** Creates a new Cannon. */
   public Cannon() {
     compressor1 = new SparkMax(Constants.Compressor1, MotorType.kBrushed);
@@ -53,5 +55,8 @@ public class Cannon extends SubsystemBase {
   }
   public void pivot(double speed){
     pivot.set(speed);
+  }
+  public double getPressure(){
+    return 250 * (sensor.getVoltage() / 5) - 15;
   }
 }
