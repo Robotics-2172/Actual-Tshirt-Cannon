@@ -18,7 +18,7 @@ public class Cannon extends SubsystemBase {
   private SparkMax compressor2;
   private SparkMax solenoid;
   public SparkMax pivot;
-  public AnalogInput sensor = new AnalogInput(3);
+  public AnalogInput sensor;
   /** Creates a new Cannon. */
   public Cannon() {
     compressor1 = new SparkMax(Constants.Compressor1, MotorType.kBrushed);
@@ -26,6 +26,7 @@ public class Cannon extends SubsystemBase {
     solenoid = new SparkMax(Constants.Solenoid, MotorType.kBrushed);
     pivot = new SparkMax(Constants.TiltMotor, MotorType.kBrushed);
 
+    sensor = new AnalogInput(Constants.PressureSensor);
     
   }
 
@@ -36,8 +37,8 @@ public class Cannon extends SubsystemBase {
 
   public void compress(boolean value) {
     if (value){
-      compressor1.set(100);
-      compressor2.set(100);
+      compressor1.set(1);
+      compressor2.set(1);
     }
     else {
       compressor1.set(0);
@@ -47,7 +48,7 @@ public class Cannon extends SubsystemBase {
   }
   public void shoot(boolean value){
     if (value) {
-      solenoid.set(100);
+      solenoid.set(1);
     }
     else{
       solenoid.set(0);
@@ -57,6 +58,6 @@ public class Cannon extends SubsystemBase {
     pivot.set(speed);
   }
   public double getPressure(){
-    return 250 * (sensor.getVoltage() / 5) - 15;
+    return Math.round(250 * (sensor.getVoltage() / 5) - 23);
   }
 }
